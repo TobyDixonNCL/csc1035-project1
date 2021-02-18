@@ -5,7 +5,7 @@ import java.util.List;
 
 public class District {
     private String localDistrict;
-    private Incident[] burglaryIncidents;
+    private List<Incident> burglaryIncidents = new ArrayList<>();
 
     public String getLocalDistrict() {
         return localDistrict;
@@ -15,11 +15,11 @@ public class District {
         this.localDistrict = localDistrict;
     }
 
-    public Incident[] getBurglaryIncidents() {
+    public List<Incident> getBurglaryIncidents() {
         return burglaryIncidents;
     }
 
-    public void setBurglaryIncidents(Incident[] burglaryIncidents) {
+    public void setBurglaryIncidents(List<Incident> burglaryIncidents) {
         this.burglaryIncidents = burglaryIncidents;
     }
 
@@ -42,7 +42,7 @@ public class District {
             totalVal += inc.getValue();
         }
 
-        return (totalVal / burglaryIncidents.length);
+        return (totalVal / burglaryIncidents.size());
 
     }
 
