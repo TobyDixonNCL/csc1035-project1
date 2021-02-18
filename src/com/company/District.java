@@ -35,12 +35,15 @@ public class District {
         return currentInc;
     }
 
-    public int avgIncValue(){
+    public int avgIncValue(int year){
         int totalVal = 0;
 
         for (Incident inc: burglaryIncidents){
-            totalVal += inc.getValue();
+            if (inc.getYear() == year) {
+                totalVal += inc.getValue();
+            }
         }
+
 
         return (totalVal / burglaryIncidents.size());
 

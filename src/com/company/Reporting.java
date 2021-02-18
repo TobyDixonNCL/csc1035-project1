@@ -7,16 +7,15 @@ public class Reporting {
 
     public static List<District> districts = new ArrayList<>();
 
-    public static District largestAverageValue(){
+    public static District largestAverageValue(int year){
 
         District currentDist = new District();
 
         for (District district: districts){
 
-            if (district.avgIncValue() > currentDist.avgIncValue()){
+            if (district.avgIncValue(year) > currentDist.avgIncValue(year)) {
                 currentDist = district;
             }
-
         }
 
         return currentDist;
