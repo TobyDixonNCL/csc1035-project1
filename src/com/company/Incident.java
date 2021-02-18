@@ -1,16 +1,16 @@
 package com.company;
 
 public class Incident {
-    private int value;
+    private float value;
     private String postcode;
     private String month;
     private int year;
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
     }
 
