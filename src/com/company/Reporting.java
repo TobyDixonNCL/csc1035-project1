@@ -5,17 +5,9 @@ import java.util.List;
 
 public class Reporting {
 
-    public District[] districts;
+    public static List<District> districts = new ArrayList<>();
 
-    public District[] getDistricts() {
-        return districts;
-    }
-
-    public void setDistricts(District[] districts) {
-        this.districts = districts;
-    }
-
-    public District largestAverageValue(){
+    public static District largestAverageValue(){
 
         District currentDist = new District();
 
@@ -31,7 +23,7 @@ public class Reporting {
 
     }
 
-    public Incident largestEver(){
+    public static Incident largestEver(){
 
         Incident currentInc = new Incident();
 
@@ -45,7 +37,7 @@ public class Reporting {
 
     }
 
-    public List<Incident> incAboveValue(float value){
+    public static List<Incident> incAboveValue(float value){
 
         List<Incident> allInc = new ArrayList<>();
 
