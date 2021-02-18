@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ReportingIO {
@@ -19,8 +20,13 @@ public class ReportingIO {
                     4. Exit
                     """);
 
-            int page = Integer.parseInt(input.nextLine());
+            int page = 0;
 
+            try {
+                page = Integer.parseInt(input.nextLine());
+            } catch (Exception NumberFormatException){
+                System.out.println("Expected an integer input");
+            }
             switch (page) {
                 case 1 -> enterDistrictData();
                 case 2 -> enterIncidentData();
@@ -65,9 +71,50 @@ public class ReportingIO {
             }
         }
 
+
     }
 
     public static void reportStats() {
 
+        boolean running = true;
+
+        while (running) {
+            Scanner input = new Scanner(System.in);
+            System.out.println(""" 
+                    --------------- Reports ---------------
+                    Select one of the following:
+                    1. Largest average value for a given 
+                    year.
+                    2. Highest reported incident.
+                    3. All incidents valued over x amount.
+                    4. Exit
+                    """);
+
+            int opt = 0;
+
+            try {
+                opt = Integer.parseInt(input.nextLine());
+            } catch (Exception NumberFormatException) {
+                System.out.println("Expected an integer input.");
+            }
+
+            switch (opt) {
+                case 1 -> {
+                    System.out.println("Please enter the year: ");
+                    int year = Integer.parseInt(input.nextLine());
+                    System.out.println("District: " + Reporting.largestAverageValue(year));
+                }
+                case 2 -> System.out.println("Highest reported: " + Reporting.largestEver());
+                case 3 -> {
+                    System.out.println("Please enter the value to be checked above: ");
+                    int value = Integer.parseInt(input.nextLine());
+                    List<Incident> incidents = Reporting.incAboveValue(value);
+                    for (int i = 0; i < incidents.size(); i++) {
+                        System.out.println(i + ". " + incidents.get(i).toString());
+                    }
+                }
+                case 4 -> running = false;
+            }
+        }
     }
 }
