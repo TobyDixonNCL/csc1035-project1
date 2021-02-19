@@ -158,7 +158,7 @@ public class ReportingIO {
                 case 1 -> {
                     System.out.println("Please enter the year: ");
                     int year = Integer.parseInt(input.nextLine());
-                    System.out.println("District: " + Reporting.largestAverageValue(year));
+                    System.out.println("District: " + Reporting.largestAverageValue(year).getLocalDistrict());
                     running = false;
                 }
                 case 2 -> {
