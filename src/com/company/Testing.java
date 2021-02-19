@@ -5,9 +5,18 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains test cases for all methods (other than getters and setters) used
+ * within this project. Each test creates a set of information that the method uses, and
+ * assures that the method returns the correct information back.
+ *
+ * @author Toby Dixon
+ */
+
 public class Testing {
 
     // District Tests
+
     @Test
     public void testHighestVal(){
 

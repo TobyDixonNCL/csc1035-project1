@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class is controls how the user interfaces with the other classes and the users' inputs.
+ * @author Toby Dixon
+ */
+
 public class ReportingIO {
+
+    /**
+     * This is the main method which is where the program is initiated
+     * @param args
+     */
     public static void main(String[] args){
         boolean running = true;
         Scanner input = new Scanner(System.in);
@@ -39,6 +49,9 @@ public class ReportingIO {
 
     }
 
+    /**
+     * This allows the user to report information about a new district
+     */
     public static void enterDistrictData(){
 
         Scanner input = new Scanner(System.in);
@@ -50,6 +63,9 @@ public class ReportingIO {
 
     }
 
+    /**
+     * This allows the user to report information about a new incident
+     */
     public static void enterIncidentData(){
 
         Scanner input = new Scanner(System.in);
@@ -134,6 +150,11 @@ public class ReportingIO {
 
 
     }
+
+    /**
+     * This allows the user to choose from 3 different reports that all return different information
+     * about the Incidents and their Districts
+     */
 
     public static void reportStats() {
 
