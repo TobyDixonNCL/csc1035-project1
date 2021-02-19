@@ -105,6 +105,7 @@ public class ReportingIO {
             for (District dis: Reporting.districts){
                 if (dis.getLocalDistrict().equals(localDist)){
                     distExists = true;
+                    break;
                 }
             }
             if (distExists) {
