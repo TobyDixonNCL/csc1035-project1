@@ -57,6 +57,7 @@ public class ReportingIO {
         float val;
         String postcode, month, localDist;
         int year;
+        boolean distExists = false;
 
         while (true) {
             System.out.println("Value of the incident: ");
@@ -98,32 +99,36 @@ public class ReportingIO {
             }
         }
 
-        while (true) {
-            System.out.println("District in which the incident occurred");
-            localDist = input.nextLine();
-            boolean distExists = false;
-            for (District dis: Reporting.districts){
-                if (dis.getLocalDistrict().equals(localDist)){
-                    distExists = true;
-                    break;
-                }
-            }
-            if (distExists) {
+
+        System.out.println("District in which the incident occurred");
+        localDist = input.nextLine();
+        for (District dis: Reporting.districts){
+            if (dis.getLocalDistrict().equals(localDist)){
+                distExists = true;
                 break;
-            } else {
-                System.out.println("Unrecognised Input");
+            }
+        }
+        if (!distExists) {
+            System.out.println("Unrecognised District");
+            System.out.println("Returing to menu \n");
+            try {
+                Thread.sleep(600);
+            } catch (Exception e){
+                System.out.println("Sleep failed");
             }
         }
 
         Incident i = new Incident(val, postcode, month, year);
 
-        for (District dist: Reporting.districts){
-            try {
-                if (dist.getLocalDistrict().equals(localDist)) {
-                    dist.getBurglaryIncidents().add(i);
+        if (distExists) {
+            for (District dist : Reporting.districts) {
+                try {
+                    if (dist.getLocalDistrict().equals(localDist)) {
+                        dist.getBurglaryIncidents().add(i);
+                    }
+                } catch (Exception NullPointerException) {
+                    dist.setBurglaryIncidents(new ArrayList<>());
                 }
-            } catch (Exception NullPointerException){
-                dist.setBurglaryIncidents(new ArrayList<>());
             }
         }
 
