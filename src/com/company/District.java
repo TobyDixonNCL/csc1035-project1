@@ -43,16 +43,21 @@ public class District {
 
     public int avgIncValue(int year){
         int totalVal = 0;
+        int totalInc = 0;
 
         for (Incident inc: burglaryIncidents){
             if (inc.getYear() == year) {
                 totalVal += inc.getValue();
+                totalInc++;
             }
         }
 
 
-        return (totalVal / burglaryIncidents.size());
-
+        if (totalVal != 0) {
+            return (totalVal / totalInc);
+        } else {
+            return 0;
+        }
     }
 
     public List<Incident> incAboveValue(float cost){
