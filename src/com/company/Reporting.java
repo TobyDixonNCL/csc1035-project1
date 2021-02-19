@@ -9,7 +9,7 @@ public class Reporting {
 
     public static District largestAverageValue(int year){
 
-        District currentDist = new District();
+        District currentDist = new District("NULL", new ArrayList<>());
 
         for (District district: districts){
 
@@ -24,7 +24,7 @@ public class Reporting {
 
     public static Incident largestEver(){
 
-        Incident currentInc = new Incident();
+        Incident currentInc = new Incident(0, "NULL", "NULL", 0);
 
         for (District district: districts){
             if (district.highestValue().getValue() > currentInc.getValue()){

@@ -5,7 +5,12 @@ import java.util.List;
 
 public class District {
     private String localDistrict;
-    private List<Incident> burglaryIncidents = new ArrayList<>();
+    private List<Incident> burglaryIncidents;
+
+    public District(String localDistrict, List<Incident> burglaryIncidents){
+        this.localDistrict = localDistrict;
+        this.burglaryIncidents = burglaryIncidents;
+    }
 
     public String getLocalDistrict() {
         return localDistrict;
@@ -24,15 +29,16 @@ public class District {
     }
 
     public Incident highestValue(){
-        Incident currentInc = new Incident();
+
+        Incident i = new Incident(0, "NULL", "NULL", 0);
 
         for (Incident inc: burglaryIncidents){
-            if (inc.getValue() > currentInc.getValue()){
-                currentInc = inc;
+            if (inc.getValue() > i.getValue()){
+                i = inc;
             }
         }
 
-        return currentInc;
+        return i;
     }
 
     public int avgIncValue(int year){

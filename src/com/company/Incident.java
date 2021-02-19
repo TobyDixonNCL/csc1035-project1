@@ -6,6 +6,13 @@ public class Incident {
     private String month;
     private int year;
 
+    public Incident(float value, String postcode, String month, int year){
+        this.value = value;
+        this.postcode = postcode;
+        this.month = month;
+        this.year = year;
+    }
+
     public float getValue() {
         return value;
     }
@@ -36,6 +43,13 @@ public class Incident {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public void printInfo(){
+        System.out.println("Value " + this.value);
+        System.out.println("Month " + this.month);
+        System.out.println("Postcode " + this.postcode);
+        System.out.println("Year " + this.year);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,7 +42,7 @@ public class ReportingIO {
     public static void enterDistrictData(){
 
         Scanner input = new Scanner(System.in);
-        District newDist = new District();
+        District newDist = new District(null, new ArrayList<>());
         System.out.println("Please enter the following:");
         System.out.println("Name of the district: ");
         newDist.setLocalDistrict(input.nextLine());
@@ -52,22 +53,76 @@ public class ReportingIO {
     public static void enterIncidentData(){
 
         Scanner input = new Scanner(System.in);
-        Incident newInc = new Incident();
         System.out.println("Please enter the following");
-        System.out.println("Value of the incident: ");
-        newInc.setValue(Integer.parseInt(input.nextLine()));
-        System.out.println("Postcode of the incident: ");
-        newInc.setPostcode(input.nextLine());
-        System.out.println("Month the incident occurred in: ");
-        newInc.setMonth(input.nextLine());
-        System.out.println("Year the incident occurred in: ");
-        newInc.setYear(Integer.parseInt(input.nextLine()));
-        System.out.println("District in which the incident occurred");
-        String localDist = input.nextLine();
+        float val;
+        String postcode, month, localDist;
+        int year;
+
+        while (true) {
+            System.out.println("Value of the incident: ");
+            try {
+                val = Integer.parseInt(input.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Unrecognised Input");
+            }
+        }
+
+        while (true) {
+            System.out.println("Postcode of the incident: ");
+            try {
+                postcode = input.nextLine();
+                break;
+            } catch (Exception e){
+                System.out.println("Unrecognised Input");
+            }
+        }
+
+        while (true) {
+            System.out.println("Month the incident occurred in: ");
+            try {
+                month = input.nextLine();
+                break;
+            } catch (Exception e){
+                System.out.println("Unrecognised Input");
+            }
+        }
+
+        while (true) {
+            System.out.println("Year the incident occurred in: ");
+            try {
+                year = Integer.parseInt(input.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Unrecognised Input");
+            }
+        }
+
+        while (true) {
+            System.out.println("District in which the incident occurred");
+            localDist = input.nextLine();
+            boolean distExists = false;
+            for (District dis: Reporting.districts){
+                if (dis.getLocalDistrict().equals(localDist)){
+                    distExists = true;
+                }
+            }
+            if (distExists) {
+                break;
+            } else {
+                System.out.println("Unrecognised Input");
+            }
+        }
+
+        Incident i = new Incident(val, postcode, month, year);
 
         for (District dist: Reporting.districts){
-            if (dist.getLocalDistrict().equals(localDist)){
-                dist.getBurglaryIncidents().add(newInc);
+            try {
+                if (dist.getLocalDistrict().equals(localDist)) {
+                    dist.getBurglaryIncidents().add(i);
+                }
+            } catch (Exception NullPointerException){
+                dist.setBurglaryIncidents(new ArrayList<>());
             }
         }
 
@@ -103,15 +158,22 @@ public class ReportingIO {
                     System.out.println("Please enter the year: ");
                     int year = Integer.parseInt(input.nextLine());
                     System.out.println("District: " + Reporting.largestAverageValue(year));
+                    running = false;
                 }
-                case 2 -> System.out.println("Highest reported: " + Reporting.largestEver());
+                case 2 -> {
+                    System.out.println("Highest reported: ");
+                    Reporting.largestEver().printInfo();
+                    running = false;
+                }
                 case 3 -> {
                     System.out.println("Please enter the value to be checked above: ");
                     int value = Integer.parseInt(input.nextLine());
                     List<Incident> incidents = Reporting.incAboveValue(value);
                     for (int i = 0; i < incidents.size(); i++) {
-                        System.out.println(i + ". " + incidents.get(i).toString());
+                        System.out.println((i + 1) + ": ");
+                        incidents.get(i).printInfo();
                     }
+                    running = false;
                 }
                 case 4 -> running = false;
             }
